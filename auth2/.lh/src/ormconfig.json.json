@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/ormconfig.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1700639649764,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1700640922832,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,10 @@\n+{\r\n+  \"type\": \"mysql\",\r\n+  \"host\": \"127.0.0.1\",\r\n+  \"port\": 3306,\r\n+  \"username\": \"root\",\r\n+  \"password\": \"root\",\r\n+  \"database\": \"authdb\",\r\n+  \"entities\": [\"src/**/**.entity{.ts,.js}\"],\r\n+  \"synchronize\": true\r\n+}\r\n"
+                }
+            ],
+            "date": 1700639649764,
+            "name": "Commit-0",
+            "content": "{\r\n  \"type\": \"mysql\",\r\n  \"host\": \"127.0.0.1\",\r\n  \"port\": 3306,\r\n  \"username\": \"authuser\",\r\n  \"password\": \"root\",\r\n  \"database\": \"authdb\",\r\n  \"entities\": [\"src/**/**.entity{.ts,.js}\"],\r\n  \"synchronize\": true\r\n}\r\n"
+        }
+    ]
+}

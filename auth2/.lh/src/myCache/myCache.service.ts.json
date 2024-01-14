@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/myCache/myCache.service.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1701928351334,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1701928947448,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,19 @@\n-\n+import { CACHE_MANAGER } from '@nestjs/cache-manager';\n import { Inject, Injectable } from '@nestjs/common';\n-\n+import { Cache } from 'cache-manager';\n @Injectable()\n export class MyCacheService {\n-  constructor() {}\n+  constructor(@Inject(CACHE_MANAGER) private cacheManager: Cache) {}\n \n+  async get(key: string) {\n+    return await this.cacheManager.get(key);\n+  }\n+\n+  async set(key: string, value: any, ttl?: number) {\n+    return await this.cacheManager.set(key, value, ttl);\n+  }\n+\n+  async del(key: string) {\n+    return await this.cacheManager.del(key);\n+  }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1701934156129,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,5 +15,10 @@\n \n   async del(key: string) {\n     return await this.cacheManager.del(key);\n   }\n-}\n\\ No newline at end of file\n+\n+  // Add this method to get the redis client\n+  async getClient() {\n+    return this.cacheManager.store.getClient();\n+  }\n+}\n"
+                }
+            ],
+            "date": 1701928351334,
+            "name": "Commit-0",
+            "content": "\nimport { Inject, Injectable } from '@nestjs/common';\n\n@Injectable()\nexport class MyCacheService {\n  constructor() {}\n\n}"
+        }
+    ]
+}

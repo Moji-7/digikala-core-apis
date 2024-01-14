@@ -1,0 +1,30 @@
+{
+    "sourceFile": "src/app.module.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1701937131772,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1701938402182,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,10 +8,10 @@\n       {\n         name: 'AUTH_SERVICE',\n         transport: Transport.TCP,\n         options: {\n-          host: 'localhost',\n-          port: 3001,\n+          host: '127.0.0.1',\n+          port: 3100,\n         },\n       },\n     ]),\n     AuthenticationModule,\n"
+                },
+                {
+                    "date": 1701939584742,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n-import { Module } from '@nestjs/common';\n+import { Global, Module } from '@nestjs/common';\n import { ClientsModule, Transport } from '@nestjs/microservices';\n import { AuthenticationModule } from './authentication/authentication.module';\n-\n+@Global()\n @Module({\n   imports: [\n     ClientsModule.register([\n       {\n@@ -16,6 +16,7 @@\n     ]),\n     AuthenticationModule,\n   ],\n   providers: [],\n+ // exports: [MyCacheService],\n })\n export class AppModule {}\n"
+                },
+                {
+                    "date": 1701939613038,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,18 +3,8 @@\n import { AuthenticationModule } from './authentication/authentication.module';\n @Global()\n @Module({\n   imports: [\n-    ClientsModule.register([\n-      {\n-        name: 'AUTH_SERVICE',\n-        transport: Transport.TCP,\n-        options: {\n-          host: '127.0.0.1',\n-          port: 3100,\n-        },\n-      },\n-    ]),\n     AuthenticationModule,\n   ],\n   providers: [],\n  // exports: [MyCacheService],\n"
+                }
+            ],
+            "date": 1701937131772,
+            "name": "Commit-0",
+            "content": "import { Module } from '@nestjs/common';\nimport { ClientsModule, Transport } from '@nestjs/microservices';\nimport { AuthenticationModule } from './authentication/authentication.module';\n\n@Module({\n  imports: [\n    ClientsModule.register([\n      {\n        name: 'AUTH_SERVICE',\n        transport: Transport.TCP,\n        options: {\n          host: 'localhost',\n          port: 3001,\n        },\n      },\n    ]),\n    AuthenticationModule,\n  ],\n  providers: [],\n})\nexport class AppModule {}\n"
+        }
+    ]
+}

@@ -1,0 +1,62 @@
+{
+    "sourceFile": "src/authentication/authentication.controller.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 11,
+            "patches": [
+                {
+                    "date": 1701852545477,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1701936909559,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,8 @@\n // authentication.controller.ts\n-import { Controller } from '@nestjs/common';\n-import { MessagePattern } from '@nestjs/microservices';\n-import { AuthenticationService } from './authentication.service';\n-\n+import { Controller, Inject, Post, Body } from '@nestjs/common';\n+import { ClientProxy } from '@nestjs/microservices';\n+import { LoginUserDto } from './login-user.dto'\n @Controller()\n export class AuthenticationController {\n   constructor(\n     private readonly authenticationService: AuthenticationService,\n"
+                },
+                {
+                    "date": 1701937046058,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,12 +4,12 @@\n import { LoginUserDto } from './login-user.dto'\n @Controller()\n export class AuthenticationController {\n   constructor(\n-    private readonly authenticationService: AuthenticationService,\n+    @Inject('AUTH_SERVICE') private readonly client: ClientProxy,\n   ) {}\n \n-  @MessagePattern('auth/login')\n-  async login(data: any) {\n-    return this.authenticationService.validateUser(data.username, data.password);\n+  @Post('login')\n+  async login(@Body() loginUserDto: LoginUserDto) {\n+    return this.client.send('login', loginUserDto).toPromise();\n   }\n }\n"
+                },
+                {
+                    "date": 1701939847896,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,19 @@\n // authentication.controller.ts\n-import { Controller, Inject, Post, Body } from '@nestjs/common';\n+import { Controller, Inject, Post, Body, Logger } from '@nestjs/common';\n import { ClientProxy } from '@nestjs/microservices';\n import { LoginUserDto } from './login-user.dto'\n @Controller()\n export class AuthenticationController {\n+  private readonly logger = new Logger(AuthenticationController.name);\n+\n   constructor(\n     @Inject('AUTH_SERVICE') private readonly client: ClientProxy,\n+    \n   ) {}\n \n   @Post('login')\n   async login(@Body() loginUserDto: LoginUserDto) {\n+    this.logger.log(`Attempting login for user with email: ${loginUserDto.email}`);\n     return this.client.send('login', loginUserDto).toPromise();\n   }\n }\n"
+                },
+                {
+                    "date": 1701941468472,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,8 @@\n   ) {}\n \n   @Post('login')\n   async login(@Body() loginUserDto: LoginUserDto) {\n-    this.logger.log(`Attempting login for user with email: ${loginUserDto.email}`);\n+    this.logger.log(`Attempting login for user with email: ${loginUserDto}`);\n     return this.client.send('login', loginUserDto).toPromise();\n   }\n }\n"
+                },
+                {
+                    "date": 1701941523741,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,8 @@\n   ) {}\n \n   @Post('login')\n   async login(@Body() loginUserDto: LoginUserDto) {\n-    this.logger.log(`Attempting login for user with email: ${loginUserDto}`);\n+    this.logger.log(`Attempting login for user with email: ${loginUserDto.user}`);\n     return this.client.send('login', loginUserDto).toPromise();\n   }\n }\n"
+                },
+                {
+                    "date": 1701941598530,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,11 @@\n     \n   ) {}\n \n   @Post('login')\n-  async login(@Body() loginUserDto: LoginUserDto) {\n-    this.logger.log(`Attempting login for user with email: ${loginUserDto.user}`);\n-    return this.client.send('login', loginUserDto).toPromise();\n+  async login(@Body() loginRequestDto: LoginRequestDto) {\n+    const { user } = loginRequestDto;\n+    this.logger.log(`Attempting login for user with email: ${user.email}`);\n+    return this.client.send('login', user).toPromise();\n   }\n+  \n }\n"
+                },
+                {
+                    "date": 1701941758649,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n // authentication.controller.ts\n import { Controller, Inject, Post, Body, Logger } from '@nestjs/common';\n import { ClientProxy } from '@nestjs/microservices';\n-import { LoginUserDto } from './login-user.dto'\n+import { LoginRequestDto } from './login-user.dto'\n @Controller()\n export class AuthenticationController {\n   private readonly logger = new Logger(AuthenticationController.name);\n \n@@ -14,8 +14,8 @@\n   @Post('login')\n   async login(@Body() loginRequestDto: LoginRequestDto) {\n     const { user } = loginRequestDto;\n     this.logger.log(`Attempting login for user with email: ${user.email}`);\n-    return this.client.send('login', user).toPromise();\n+    return this.client.send('login', user);\n   }\n   \n }\n"
+                },
+                {
+                    "date": 1701942953609,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,13 +3,12 @@\n import { ClientProxy } from '@nestjs/microservices';\n import { LoginRequestDto } from './login-user.dto'\n @Controller()\n export class AuthenticationController {\n+  \n   private readonly logger = new Logger(AuthenticationController.name);\n-\n   constructor(\n     @Inject('AUTH_SERVICE') private readonly client: ClientProxy,\n-    \n   ) {}\n \n   @Post('login')\n   async login(@Body() loginRequestDto: LoginRequestDto) {\n"
+                },
+                {
+                    "date": 1701943249972,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { ClientProxy } from '@nestjs/microservices';\n import { LoginRequestDto } from './login-user.dto'\n @Controller()\n export class AuthenticationController {\n-  \n+\n   private readonly logger = new Logger(AuthenticationController.name);\n   constructor(\n     @Inject('AUTH_SERVICE') private readonly client: ClientProxy,\n   ) {}\n@@ -16,5 +16,6 @@\n     this.logger.log(`Attempting login for user with email: ${user.email}`);\n     return this.client.send('login', user);\n   }\n   \n+  \n }\n"
+                },
+                {
+                    "date": 1701943412248,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,9 @@\n // authentication.controller.ts\n-import { Controller, Inject, Post, Body, Logger } from '@nestjs/common';\n+import { Controller, Inject, Post, Body, Logger, HttpException, HttpStatus } from '@nestjs/common';\n import { ClientProxy } from '@nestjs/microservices';\n+import { EventPattern, MessagePattern } from '@nestjs/microservices';\n+\n import { LoginRequestDto } from './login-user.dto'\n @Controller()\n export class AuthenticationController {\n \n@@ -16,6 +18,24 @@\n     this.logger.log(`Attempting login for user with email: ${user.email}`);\n     return this.client.send('login', user);\n   }\n   \n+  //@EventPattern('auth/token')\n+  @EventPattern('login')\n+  handleToken(data: any) {\n+    console.log(data);\n+    // return the token to the client as a JSON object\n+    return { token: data };\n+    // or return the token to the client as a header\n+    // return res.header('Authorization', 'Bearer ' + data).send();\n+  }\n+\n+  @MessagePattern('login')\n+  handleLogin(data: any) {\n+    // forward the login request to the authentication microservice\n+    this.client.send('login', data).((error) => {\n+      // handle any errors that might occur during the authentication process\n+      throw new HttpException(error.message, HttpStatus.UNAUTHORIZED);\n+    });\n+  }\n   \n }\n"
+                },
+                {
+                    "date": 1701946204241,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,7 @@\n // authentication.controller.ts\n-import { Controller, Inject, Post, Body, Logger, HttpException, HttpStatus } from '@nestjs/common';\n-import { ClientProxy } from '@nestjs/microservices';\n-import { EventPattern, MessagePattern } from '@nestjs/microservices';\n+import { Controller, Inject, Post, Body, Logger, HttpCode, HttpException, HttpStatus, Res } from '@nestjs/common';\n+import { ClientProxy, EventPattern } from '@nestjs/microservices';\n \n import { LoginRequestDto } from './login-user.dto'\n @Controller()\n export class AuthenticationController {\n@@ -11,31 +10,32 @@\n   constructor(\n     @Inject('AUTH_SERVICE') private readonly client: ClientProxy,\n   ) {}\n \n+  // @Post('login')\n+  // async login(@Body() loginRequestDto: LoginRequestDto) {\n+  //   const { user } = loginRequestDto;\n+  //   this.logger.log(`Attempting login for user with email: ${user.email}`);\n+  //   return this.client.send('login', user);\n+  // }\n+  \n+  @EventPattern('auth/token')\n+  @HttpCode(200)\n+  handleToken(@Res() res, data: any) {\n+    // ...\n+  }\n   @Post('login')\n-  async login(@Body() loginRequestDto: LoginRequestDto) {\n+  @HttpCode(200)\n+  async handleLogin(@Body() loginRequestDto: LoginRequestDto) {\n     const { user } = loginRequestDto;\n     this.logger.log(`Attempting login for user with email: ${user.email}`);\n-    return this.client.send('login', user);\n-  }\n-  \n-  //@EventPattern('auth/token')\n-  @EventPattern('login')\n-  handleToken(data: any) {\n-    console.log(data);\n-    // return the token to the client as a JSON object\n-    return { token: data };\n-    // or return the token to the client as a header\n-    // return res.header('Authorization', 'Bearer ' + data).send();\n-  }\n-\n-  @MessagePattern('login')\n-  handleLogin(data: any) {\n-    // forward the login request to the authentication microservice\n-    this.client.send('login', data).((error) => {\n+    try {\n+      // use the await keyword\n+      const resp = await this.client.send('login', user).toPromise();\n+      // return the token to the client\n+      return { resp };\n+    } catch (error) {\n       // handle any errors that might occur during the authentication process\n-      throw new HttpException(error.message, HttpStatus.UNAUTHORIZED);\n-    });\n+      throw new HttpException(error.message, HttpStatus.EXPECTATION_FAILED);\n+    }\n   }\n-  \n }\n"
+                }
+            ],
+            "date": 1701852545477,
+            "name": "Commit-0",
+            "content": "// authentication.controller.ts\nimport { Controller } from '@nestjs/common';\nimport { MessagePattern } from '@nestjs/microservices';\nimport { AuthenticationService } from './authentication.service';\n\n@Controller()\nexport class AuthenticationController {\n  constructor(\n    private readonly authenticationService: AuthenticationService,\n  ) {}\n\n  @MessagePattern('auth/login')\n  async login(data: any) {\n    return this.authenticationService.validateUser(data.username, data.password);\n  }\n}\n"
+        }
+    ]
+}

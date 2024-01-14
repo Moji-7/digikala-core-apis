@@ -1,0 +1,22 @@
+{
+    "sourceFile": "ormconfig.json.example",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1700570439316,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1700570594407,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,8 @@\n   \"host\": \"localhost\",\r\n   \"port\": 3306,\r\n   \"username\": \"root\",\r\n   \"password\": \"root\",\r\n-  \"database\": \"usersdb\",\r\n+  \"database\": \"authdb\",\r\n   \"entities\": [\"src/**/**.entity{.ts,.js}\"],\r\n   \"synchronize\": true\r\n }\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1700570439316,
+            "name": "Commit-0",
+            "content": "{\r\n  \"type\": \"mysql\",\r\n  \"host\": \"localhost\",\r\n  \"port\": 3306,\r\n  \"username\": \"root\",\r\n  \"password\": \"root\",\r\n  \"database\": \"usersdb\",\r\n  \"entities\": [\"src/**/**.entity{.ts,.js}\"],\r\n  \"synchronize\": true\r\n}"
+        }
+    ]
+}

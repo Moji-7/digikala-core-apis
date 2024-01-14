@@ -1,0 +1,26 @@
+{
+    "sourceFile": "package.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1700640998913,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1701868303779,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,8 +22,9 @@\n     \"url\": \"https://github.com/lujakob/nestjs-realworld-example-app/issues\"\r\n   },\r\n   \"homepage\": \"https://github.com/lujakob/nestjs-realworld-example-app#readme\",\r\n   \"dependencies\": {\r\n+    \"@nestjs/cache-manager\": \"^2.1.1\",\r\n     \"@nestjs/common\": \"^10.2.10\",\r\n     \"@nestjs/core\": \"^10.2.10\",\r\n     \"@nestjs/microservices\": \"^10.2.10\",\r\n     \"@nestjs/platform-express\": \"^10.2.10\",\r\n@@ -31,12 +32,16 @@\n     \"@nestjs/testing\": \"^10.2.10\",\r\n     \"@nestjs/typeorm\": \"^10.0.1\",\r\n     \"@nestjs/websockets\": \"^10.2.10\",\r\n     \"argon2\": \"^0.31.2\",\r\n+    \"cache-manager\": \"^4.0.0\",\r\n+    \"cache-manager-redis-store\": \"^3.0.1\",\r\n+    \"cache-manager-redis-yet\": \"^4.1.2\",\r\n     \"class-transformer\": \"^0.5.1\",\r\n     \"class-validator\": \"^0.14.0\",\r\n     \"crypto\": \"^1.0.1\",\r\n     \"crypto-js\": \"^4.2.0\",\r\n+    \"ioredis\": \"^5.3.2\",\r\n     \"jsonwebtoken\": \"^9.0.2\",\r\n     \"mysql\": \"npm:mysql2@^3.6.5\",\r\n     \"mysql2\": \"^3.6.5\",\r\n     \"passport-jwt\": \"^4.0.1\",\r\n"
+                },
+                {
+                    "date": 1701868620469,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,10 +32,10 @@\n     \"@nestjs/testing\": \"^10.2.10\",\r\n     \"@nestjs/typeorm\": \"^10.0.1\",\r\n     \"@nestjs/websockets\": \"^10.2.10\",\r\n     \"argon2\": \"^0.31.2\",\r\n-    \"cache-manager\": \"^4.0.0\",\r\n-    \"cache-manager-redis-store\": \"^3.0.1\",\r\n+    \"cache-manager\": \"4.0.0\",\r\n+    \"cache-manager-redis-store\": \"2.0.0\",\r\n     \"cache-manager-redis-yet\": \"^4.1.2\",\r\n     \"class-transformer\": \"^0.5.1\",\r\n     \"class-validator\": \"^0.14.0\",\r\n     \"crypto\": \"^1.0.1\",\r\n"
+                }
+            ],
+            "date": 1700640998913,
+            "name": "Commit-0",
+            "content": "{\r\n  \"name\": \"nestjs-realworld-example-app\",\r\n  \"version\": \"2.0.0\",\r\n  \"description\": \"[![Build Status](https://travis-ci.org/anishkny/node-express-realworld-example-app.svg?branch=master)](https://travis-ci.org/anishkny/node-express-realworld-example-app)\",\r\n  \"main\": \"index.js\",\r\n  \"scripts\": {\r\n    \"start\": \"node index.js\",\r\n    \"start:watch\": \"nodemon\",\r\n    \"prestart:prod\": \"tsc\",\r\n    \"start:prod\": \"node dist/main.js\",\r\n    \"test\": \"jest --config=jest.json\",\r\n    \"test:watch\": \"jest --watch --config=jest.json\",\r\n    \"test:coverage\": \"jest --config=jest.json --coverage --coverageDirectory=coverage\"\r\n  },\r\n  \"repository\": {\r\n    \"type\": \"git\",\r\n    \"url\": \"git+https://github.com/lujakob/nestjs-realworld-example-app.git\"\r\n  },\r\n  \"author\": \"lu.jakob@googlemail.com\",\r\n  \"license\": \"ISC\",\r\n  \"bugs\": {\r\n    \"url\": \"https://github.com/lujakob/nestjs-realworld-example-app/issues\"\r\n  },\r\n  \"homepage\": \"https://github.com/lujakob/nestjs-realworld-example-app#readme\",\r\n  \"dependencies\": {\r\n    \"@nestjs/common\": \"^10.2.10\",\r\n    \"@nestjs/core\": \"^10.2.10\",\r\n    \"@nestjs/microservices\": \"^10.2.10\",\r\n    \"@nestjs/platform-express\": \"^10.2.10\",\r\n    \"@nestjs/swagger\": \"^7.1.16\",\r\n    \"@nestjs/testing\": \"^10.2.10\",\r\n    \"@nestjs/typeorm\": \"^10.0.1\",\r\n    \"@nestjs/websockets\": \"^10.2.10\",\r\n    \"argon2\": \"^0.31.2\",\r\n    \"class-transformer\": \"^0.5.1\",\r\n    \"class-validator\": \"^0.14.0\",\r\n    \"crypto\": \"^1.0.1\",\r\n    \"crypto-js\": \"^4.2.0\",\r\n    \"jsonwebtoken\": \"^9.0.2\",\r\n    \"mysql\": \"npm:mysql2@^3.6.5\",\r\n    \"mysql2\": \"^3.6.5\",\r\n    \"passport-jwt\": \"^4.0.1\",\r\n    \"reflect-metadata\": \"^0.1.13\",\r\n    \"rxjs\": \"^7.8.1\",\r\n    \"slug\": \"^8.2.3\",\r\n    \"swagger-ui-express\": \"^5.0.0\",\r\n    \"typeorm\": \"^0.3.17\",\r\n    \"typescript\": \"^5.3.2\"\r\n  },\r\n  \"devDependencies\": {\r\n    \"@types/jest\": \"^29.5.9\",\r\n    \"@types/node\": \"^20.9.3\",\r\n    \"atob\": \">=2.1.2\",\r\n    \"deep-extend\": \">=0.6.0\",\r\n    \"extend\": \">=3.0.2\",\r\n    \"jest\": \"^29.7.0\",\r\n    \"nodemon\": \"^3.0.1\",\r\n    \"supertest\": \"^6.3.3\",\r\n    \"ts-jest\": \"^29.1.1\",\r\n    \"ts-node\": \"^10.9.1\"\r\n  }\r\n}\r\n"
+        }
+    ]
+}

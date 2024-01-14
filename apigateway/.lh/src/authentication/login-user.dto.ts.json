@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/authentication/login-user.dto.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1701936909539,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1701941589010,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,4 +8,8 @@\n   @IsString()\r\n   @IsNotEmpty()\r\n   password: string;\r\n }\r\n+\r\n+export class LoginRequestDto {\r\n+  user: LoginUserDto;\r\n+}\r\n"
+                }
+            ],
+            "date": 1701936909539,
+            "name": "Commit-0",
+            "content": "import { IsEmail, IsString, IsNotEmpty } from 'class-validator';\r\n\r\nexport class LoginUserDto {\r\n  @IsEmail()\r\n  @IsNotEmpty()\r\n  email: string;\r\n\r\n  @IsString()\r\n  @IsNotEmpty()\r\n  password: string;\r\n}\r\n"
+        }
+    ]
+}

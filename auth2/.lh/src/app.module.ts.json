@@ -1,0 +1,98 @@
+{
+    "sourceFile": "src/app.module.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 20,
+            "patches": [
+                {
+                    "date": 1700635526494,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1700635577002,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,12 +10,12 @@\n \r\n @Module({\r\n   imports: [\r\n     TypeOrmModule.forRoot(),\r\n-    ArticleModule,\r\n-    UserModule,\r\n-    ProfileModule,\r\n-    TagModule\r\n+    // ArticleModule,\r\n+    // UserModule,\r\n+    // ProfileModule,\r\n+    // TagModule\r\n   ],\r\n   controllers: [\r\n     AppController\r\n   ],\r\n"
+                },
+                {
+                    "date": 1700636886450,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,11 +7,23 @@\n import { ProfileModule } from './profile/profile.module';\r\n import { TagModule } from './tag/tag.module';\r\n import { InjectDataSource } from '@nestjs/typeorm';\r\n \r\n+\r\n+\r\n+\r\n @Module({\r\n   imports: [\r\n-    TypeOrmModule.forRoot(),\r\n+    TypeOrmModule.forRoot({\r\n+      type: 'mysql',\r\n+      host: '127.0.0.1',\r\n+      port: 3306,\r\n+      username: 'root',\r\n+      password: 'root',\r\n+      database: 'authdb',\r\n+      entities: [],\r\n+      synchronize: true,\r\n+    }),\r\n     // ArticleModule,\r\n     // UserModule,\r\n     // ProfileModule,\r\n     // TagModule\r\n"
+                },
+                {
+                    "date": 1700636940203,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n       port: 3306,\r\n       username: 'root',\r\n       password: 'root',\r\n       database: 'authdb',\r\n-      entities: [],\r\n+      \"entities\": [\"src/**/**.entity{.ts,.js}\"],\r\n       synchronize: true,\r\n     }),\r\n     // ArticleModule,\r\n     // UserModule,\r\n"
+                },
+                {
+                    "date": 1700637105305,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,15 +13,15 @@\n \r\n @Module({\r\n   imports: [\r\n     TypeOrmModule.forRoot({\r\n-      type: 'mysql',\r\n+      type: 'mysql2',\r\n       host: '127.0.0.1',\r\n       port: 3306,\r\n       username: 'root',\r\n       password: 'root',\r\n       database: 'authdb',\r\n-      \"entities\": [\"src/**/**.entity{.ts,.js}\"],\r\n+      entities: [\"src/**/**.entity{.ts,.js}\"],\r\n       synchronize: true,\r\n     }),\r\n     // ArticleModule,\r\n     // UserModule,\r\n"
+                },
+                {
+                    "date": 1700637117367,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n \r\n @Module({\r\n   imports: [\r\n     TypeOrmModule.forRoot({\r\n-      type: 'mysql2',\r\n+      type: 'mysql',\r\n       host: '127.0.0.1',\r\n       port: 3306,\r\n       username: 'root',\r\n       password: 'root',\r\n"
+                },
+                {
+                    "date": 1700638897789,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n \r\n @Module({\r\n   imports: [\r\n     TypeOrmModule.forRoot({\r\n-      type: 'mysql',\r\n+      type: 'mysql2',\r\n       host: '127.0.0.1',\r\n       port: 3306,\r\n       username: 'root',\r\n       password: 'root',\r\n"
+                },
+                {
+                    "date": 1700639274259,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n     TypeOrmModule.forRoot({\r\n       type: 'mysql2',\r\n       host: '127.0.0.1',\r\n       port: 3306,\r\n-      username: 'root',\r\n+      username: 'authuser',\r\n       password: 'root',\r\n       database: 'authdb',\r\n       entities: [\"src/**/**.entity{.ts,.js}\"],\r\n       synchronize: true,\r\n"
+                },
+                {
+                    "date": 1700639608018,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,10 +13,10 @@\n \r\n @Module({\r\n   imports: [\r\n     TypeOrmModule.forRoot({\r\n-      type: 'mysql2',\r\n-      host: '127.0.0.1',\r\n+      type: 'mysql',\r\n+      host: '127.0.0.2',\r\n       port: 3306,\r\n       username: 'authuser',\r\n       password: 'root',\r\n       database: 'authdb',\r\n"
+                },
+                {
+                    "date": 1700639806072,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,18 +12,9 @@\n \r\n \r\n @Module({\r\n   imports: [\r\n-    TypeOrmModule.forRoot({\r\n-      type: 'mysql',\r\n-      host: '127.0.0.2',\r\n-      port: 3306,\r\n-      username: 'authuser',\r\n-      password: 'root',\r\n-      database: 'authdb',\r\n-      entities: [\"src/**/**.entity{.ts,.js}\"],\r\n-      synchronize: true,\r\n-    }),\r\n+ \r\n     // ArticleModule,\r\n     // UserModule,\r\n     // ProfileModule,\r\n     // TagModule\r\n"
+                },
+                {
+                    "date": 1700639835612,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,17 @@\n \r\n \r\n @Module({\r\n   imports: [\r\n- \r\n+    TypeOrmModule.forRoot({\r\n+      type: 'mysql',\r\n+      host: '127.0.0.2',\r\n+      port: 3306,\r\n+      username: 'authuser',\r\n+      database: 'authdb',\r\n+      entities: [\"src/**/**.entity{.ts,.js}\"],\r\n+      synchronize: true,\r\n+    }),\r\n     // ArticleModule,\r\n     // UserModule,\r\n     // ProfileModule,\r\n     // TagModule\r\n"
+                },
+                {
+                    "date": 1700639923276,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,9 @@\n       type: 'mysql',\r\n       host: '127.0.0.2',\r\n       port: 3306,\r\n       username: 'authuser',\r\n+      password: 'root',\r\n       database: 'authdb',\r\n       entities: [\"src/**/**.entity{.ts,.js}\"],\r\n       synchronize: true,\r\n     }),\r\n"
+                },
+                {
+                    "date": 1700640915790,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,11 +14,11 @@\n @Module({\r\n   imports: [\r\n     TypeOrmModule.forRoot({\r\n       type: 'mysql',\r\n-      host: '127.0.0.2',\r\n+      host: '127.0.0.1',\r\n       port: 3306,\r\n-      username: 'authuser',\r\n+      username: 'root',\r\n       password: 'root',\r\n       database: 'authdb',\r\n       entities: [\"src/**/**.entity{.ts,.js}\"],\r\n       synchronize: true,\r\n"
+                },
+                {
+                    "date": 1700642427837,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,12 +22,12 @@\n       database: 'authdb',\r\n       entities: [\"src/**/**.entity{.ts,.js}\"],\r\n       synchronize: true,\r\n     }),\r\n-    // ArticleModule,\r\n-    // UserModule,\r\n-    // ProfileModule,\r\n-    // TagModule\r\n+    ArticleModule,\r\n+    UserModule,\r\n+    ProfileModule,\r\n+    TagModule\r\n   ],\r\n   controllers: [\r\n     AppController\r\n   ],\r\n"
+                },
+                {
+                    "date": 1700650670886,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,8 +21,9 @@\n       password: 'root',\r\n       database: 'authdb',\r\n       entities: [\"src/**/**.entity{.ts,.js}\"],\r\n       synchronize: true,\r\n+      name: 'dbConnection',\r\n     }),\r\n     ArticleModule,\r\n     UserModule,\r\n     ProfileModule,\r\n"
+                },
+                {
+                    "date": 1700653276229,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,10 +20,9 @@\n       username: 'root',\r\n       password: 'root',\r\n       database: 'authdb',\r\n       entities: [\"src/**/**.entity{.ts,.js}\"],\r\n-      synchronize: true,\r\n-      name: 'dbConnection',\r\n+      synchronize: true\r\n     }),\r\n     ArticleModule,\r\n     UserModule,\r\n     ProfileModule,\r\n"
+                },
+                {
+                    "date": 1701862731465,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,11 @@\n import { ProfileModule } from './profile/profile.module';\r\n import { TagModule } from './tag/tag.module';\r\n import { InjectDataSource } from '@nestjs/typeorm';\r\n \r\n+import type { RedisClientOptions } from 'redis';\r\n+import * as redisStore from 'cache-manager-redis-store';\r\n+import { CacheModule } from '@nestjs/cache-manager';\r\n \r\n \r\n \r\n @Module({\r\n@@ -22,12 +25,21 @@\n       database: 'authdb',\r\n       entities: [\"src/**/**.entity{.ts,.js}\"],\r\n       synchronize: true\r\n     }),\r\n+    CacheModule.register<RedisClientOptions>({\r\n+      \r\n+      store: redisStore,\r\n+\r\n+      // Store-specific configuration:\r\n+      host: 'localhost',\r\n+      port: 6379,\r\n+    }),\r\n     ArticleModule,\r\n     UserModule,\r\n     ProfileModule,\r\n-    TagModule\r\n+    TagModule,\r\n+    \r\n   ],\r\n   controllers: [\r\n     AppController\r\n   ],\r\n"
+                },
+                {
+                    "date": 1701862771821,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,13 +26,13 @@\n       entities: [\"src/**/**.entity{.ts,.js}\"],\r\n       synchronize: true\r\n     }),\r\n     CacheModule.register<RedisClientOptions>({\r\n-      \r\n+\r\n       store: redisStore,\r\n \r\n       // Store-specific configuration:\r\n-      host: 'localhost',\r\n+      host: '127.0.0.1',\r\n       port: 6379,\r\n     }),\r\n     ArticleModule,\r\n     UserModule,\r\n"
+                },
+                {
+                    "date": 1701863736198,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,13 +8,12 @@\n import { TagModule } from './tag/tag.module';\r\n import { InjectDataSource } from '@nestjs/typeorm';\r\n \r\n import type { RedisClientOptions } from 'redis';\r\n-import * as redisStore from 'cache-manager-redis-store';\r\n+import * as redisStore from 'cache-manager-redis-yet';\r\n import { CacheModule } from '@nestjs/cache-manager';\r\n \r\n \r\n-\r\n @Module({\r\n   imports: [\r\n     TypeOrmModule.forRoot({\r\n       type: 'mysql',\r\n"
+                },
+                {
+                    "date": 1701868303766,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,12 +8,14 @@\n import { TagModule } from './tag/tag.module';\r\n import { InjectDataSource } from '@nestjs/typeorm';\r\n \r\n import type { RedisClientOptions } from 'redis';\r\n-import * as redisStore from 'cache-manager-redis-yet';\r\n-import { CacheModule } from '@nestjs/cache-manager';\r\n+//import * as redisStore from 'cache-manager-redis-yet';\r\n+import * as redisStore from 'cache-manager-redis-store';\r\n \r\n+import { CacheModule, CacheStore } from '@nestjs/cache-manager';\r\n \r\n+\r\n @Module({\r\n   imports: [\r\n     TypeOrmModule.forRoot({\r\n       type: 'mysql',\r\n@@ -25,13 +27,10 @@\n       entities: [\"src/**/**.entity{.ts,.js}\"],\r\n       synchronize: true\r\n     }),\r\n     CacheModule.register<RedisClientOptions>({\r\n-\r\n-      store: redisStore,\r\n-\r\n-      // Store-specific configuration:\r\n-      host: '127.0.0.1',\r\n+      store: redisStore as CacheStore,\r\n+      host: 'localhost',\r\n       port: 6379,\r\n     }),\r\n     ArticleModule,\r\n     UserModule,\r\n"
+                },
+                {
+                    "date": 1701868620465,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,10 +11,9 @@\n import type { RedisClientOptions } from 'redis';\r\n //import * as redisStore from 'cache-manager-redis-yet';\r\n import * as redisStore from 'cache-manager-redis-store';\r\n \r\n-import { CacheModule, CacheStore } from '@nestjs/cache-manager';\r\n-import { RedisModule } from './redis/redis.module';\n+import { CacheModule } from '@nestjs/cache-manager';\r\n \r\n \r\n @Module({\r\n   imports: [\r\n@@ -27,18 +26,19 @@\n       database: 'authdb',\r\n       entities: [\"src/**/**.entity{.ts,.js}\"],\r\n       synchronize: true\r\n     }),\r\n-    CacheModule.register<RedisClientOptions>({\r\n-      store: redisStore as CacheStore,\r\n+      CacheModule.register<RedisClientOptions>({\r\n+      store: redisStore,\r\n+\r\n+      // Store-specific configuration:\r\n       host: 'localhost',\r\n       port: 6379,\r\n     }),\r\n     ArticleModule,\r\n     UserModule,\r\n     ProfileModule,\r\n     TagModule,\r\n-    RedisModule,\r\n     \r\n   ],\r\n   controllers: [\r\n     AppController\r\n"
+                }
+            ],
+            "date": 1700635526494,
+            "name": "Commit-0",
+            "content": "import { Module } from '@nestjs/common';\r\nimport { AppController } from './app.controller';\r\nimport { ArticleModule } from './article/article.module';\r\nimport { UserModule } from './user/user.module';\r\nimport { TypeOrmModule } from '@nestjs/typeorm';\r\nimport { DataSource } from 'typeorm';\r\nimport { ProfileModule } from './profile/profile.module';\r\nimport { TagModule } from './tag/tag.module';\r\nimport { InjectDataSource } from '@nestjs/typeorm';\r\n\r\n@Module({\r\n  imports: [\r\n    TypeOrmModule.forRoot(),\r\n    ArticleModule,\r\n    UserModule,\r\n    ProfileModule,\r\n    TagModule\r\n  ],\r\n  controllers: [\r\n    AppController\r\n  ],\r\n  providers: []\r\n})\r\nexport class ApplicationModule {\r\n  constructor(@InjectDataSource() private readonly dataSource: DataSource) {}\r\n}\r\n"
+        }
+    ]
+}

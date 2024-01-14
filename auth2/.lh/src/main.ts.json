@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/main.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1700642325800,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1700642325800,
+            "name": "Commit-0",
+            "content": "import { NestFactory } from '@nestjs/core';\r\nimport { ApplicationModule } from './app.module';\r\nimport { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';\r\n\r\nasync function bootstrap() {\r\n  const appOptions = {cors: true};\r\n  const app = await NestFactory.create(ApplicationModule, appOptions);\r\n  app.setGlobalPrefix('api');\r\n\r\n  const options = new DocumentBuilder()\r\n    .setTitle('NestJS Realworld Example App')\r\n    .setDescription('The Realworld API description')\r\n    .setVersion('1.0')\r\n    .setBasePath('api')\r\n    .addBearerAuth()\r\n    .build();\r\n  const document = SwaggerModule.createDocument(app, options);\r\n  SwaggerModule.setup('/docs', app, document);\r\n\r\n  await app.listen(3100);\r\n}\r\nbootstrap();"
+        }
+    ]
+}

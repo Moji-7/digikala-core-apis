@@ -1,0 +1,26 @@
+{
+    "sourceFile": "mysql.session.sql",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1700633756494,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1700639675701,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,1 @@\n+SELECT DATABASE;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1700660971877,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,2 +1,1 @@\n-SELECT DATABASE;\n-SELECT DATABASE;\n\\ No newline at end of file\n+select * from user;\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1700633756494,
+            "name": "Commit-0",
+            "content": "SELECT DATABASE;"
+        }
+    ]
+}

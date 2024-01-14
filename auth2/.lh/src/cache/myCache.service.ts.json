@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/cache/myCache.service.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1701927665091,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1701927696098,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,5 +14,6 @@\n   }\n \n   async del(key: string) {\n     return await this.cacheManager.del(key);\n-  }\n\\ No newline at end of file\n+  }\n+}\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1701927665091,
+            "name": "Commit-0",
+            "content": "import { CACHE_MANAGER } from '@nestjs/cache-manager';\nimport { Inject, Injectable } from '@nestjs/common';\nimport { Cache } from 'cache-manager';\n@Injectable()\nexport class MyCacheService {\n  constructor(@Inject(CACHE_MANAGER) private cacheManager: Cache) {}\n\n  async get(key: string) {\n    return await this.cacheManager.get(key);\n  }\n\n  async set(key: string, value: any, ttl?: number) {\n    return await this.cacheManager.set(key, value, ttl);\n  }\n\n  async del(key: string) {\n    return await this.cacheManager.del(key);\n  }"
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/user/user.module.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1701926263870,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1701928885826,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,13 +3,12 @@\n import { TypeOrmModule } from '@nestjs/typeorm';\r\n import { UserEntity } from './user.entity';\r\n import { UserService } from './user.service';\r\n import { AuthMiddleware } from './auth.middleware';\r\n-import { CacheModule } from '@nestjs/cache-manager';\r\n \r\n \r\n @Module({\r\n-  imports: [TypeOrmModule.forFeature([UserEntity]),CacheModule],\r\n+  imports: [TypeOrmModule.forFeature([UserEntity])],\r\n   providers: [UserService],\r\n   controllers: [\r\n     UserController\r\n   ],\r\n"
+                }
+            ],
+            "date": 1701926263870,
+            "name": "Commit-0",
+            "content": "import {MiddlewareConsumer, Module, NestModule, RequestMethod} from '@nestjs/common';\r\nimport { UserController } from './user.controller';\r\nimport { TypeOrmModule } from '@nestjs/typeorm';\r\nimport { UserEntity } from './user.entity';\r\nimport { UserService } from './user.service';\r\nimport { AuthMiddleware } from './auth.middleware';\r\nimport { CacheModule } from '@nestjs/cache-manager';\r\n\r\n\r\n@Module({\r\n  imports: [TypeOrmModule.forFeature([UserEntity]),CacheModule],\r\n  providers: [UserService],\r\n  controllers: [\r\n    UserController\r\n  ],\r\n  exports: [UserService]\r\n})\r\nexport class UserModule implements NestModule {\r\n  public configure(consumer: MiddlewareConsumer) {\r\n    consumer\r\n      .apply(AuthMiddleware)\r\n      .forRoutes({path: 'user', method: RequestMethod.GET}, {path: 'user', method: RequestMethod.PUT});\r\n  }\r\n}\r\n"
+        }
+    ]
+}

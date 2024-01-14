@@ -1,0 +1,18 @@
+{
+    "sourceFile": ".vscode/settings.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1700633690811,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1700633690811,
+            "name": "Commit-0",
+            "content": "{\r\n    \"sqltools.connections\": [\r\n        {\r\n            \"mysqlOptions\": {\r\n                \"authProtocol\": \"default\",\r\n                \"enableSsl\": \"Disabled\"\r\n            },\r\n            \"previewLimit\": 50,\r\n            \"server\": \"127.0.0.1\",\r\n            \"port\": 3306,\r\n            \"driver\": \"MySQL\",\r\n            \"name\": \"mysql\",\r\n            \"database\": \"authdb\",\r\n            \"username\": \"root\",\r\n            \"password\": \"root\"\r\n        }\r\n    ]\r\n}"
+        }
+    ]
+}

@@ -1,0 +1,42 @@
+{
+    "sourceFile": "src/authentication/authentication.module.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1701852545478,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1701852558027,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,24 +20,4 @@\n   controllers: [AuthenticationController],\n   providers: [AuthenticationService],\n })\n export class AuthenticationModule {}\n-\n-\n-// authentication.service.ts\n-import { Injectable } from '@nestjs/common';\n-import { User } from './user.entity';\n-import { UserRepository } from './user.repository';\n-\n-@Injectable()\n-export class AuthenticationService {\n-  constructor(private readonly userRepository: UserRepository) {}\n-\n-  async validateUser(username: string, password: string): Promise<any> {\n-    const user = await this.userRepository.findOne({ username });\n-    if (user && user.password === password) {\n-      const { password, ...result } = user;\n-      return result;\n-    }\n-    return null;\n-  }\n-}\n"
+                },
+                {
+                    "date": 1701939435754,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,8 @@\n // authentication.module.ts\n import { Module } from '@nestjs/common';\n import { ClientsModule, Transport } from '@nestjs/microservices';\n import { AuthenticationController } from './authentication.controller';\n-import { AuthenticationService } from './authentication.service';\n \n @Module({\n   imports: [\n     ClientsModule.register([\n@@ -17,7 +16,7 @@\n       },\n     ]),\n   ],\n   controllers: [AuthenticationController],\n-  providers: [AuthenticationService],\n+  providers: [],\n })\n export class AuthenticationModule {}\n"
+                },
+                {
+                    "date": 1701939465324,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,21 +1,10 @@\n // authentication.module.ts\n import { Module } from '@nestjs/common';\n-import { ClientsModule, Transport } from '@nestjs/microservices';\n import { AuthenticationController } from './authentication.controller';\n \n @Module({\n   imports: [\n-    ClientsModule.register([\n-      {\n-        name: 'AUTHENTICATION_SERVICE',\n-        transport: Transport.TCP,\n-        options: {\n-          host: 'localhost',\n-          port: 4000,\n-        },\n-      },\n-    ]),\n   ],\n   controllers: [AuthenticationController],\n   providers: [],\n })\n"
+                },
+                {
+                    "date": 1701939636705,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,21 @@\n // authentication.module.ts\n import { Module } from '@nestjs/common';\n import { AuthenticationController } from './authentication.controller';\n+import { ClientsModule, Transport } from '@nestjs/microservices';\n \n @Module({\n   imports: [\n+    ClientsModule.register([\n+      {\n+        name: 'AUTH_SERVICE',\n+        transport: Transport.TCP,\n+        options: {\n+          host: '127.0.0.1',\n+          port: 3100,\n+        },\n+      },\n+    ]),\n   ],\n   controllers: [AuthenticationController],\n   providers: [],\n })\n"
+                },
+                {
+                    "date": 1701939660349,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n // authentication.module.ts\n-import { Module } from '@nestjs/common';\n+import { Global, Module } from '@nestjs/common';\n import { AuthenticationController } from './authentication.controller';\n import { ClientsModule, Transport } from '@nestjs/microservices';\n-\n+@Global()\n @Module({\n   imports: [\n     ClientsModule.register([\n       {\n@@ -17,6 +17,7 @@\n     ]),\n   ],\n   controllers: [AuthenticationController],\n   providers: [],\n+  exports: [AuthenticationModule],\n })\n export class AuthenticationModule {}\n"
+                },
+                {
+                    "date": 1701942444829,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n       {\n         name: 'AUTH_SERVICE',\n         transport: Transport.TCP,\n         options: {\n-          host: '127.0.0.1',\n+          host: 'localhost',\n           port: 3100,\n         },\n       },\n     ]),\n"
+                }
+            ],
+            "date": 1701852545478,
+            "name": "Commit-0",
+            "content": "// authentication.module.ts\nimport { Module } from '@nestjs/common';\nimport { ClientsModule, Transport } from '@nestjs/microservices';\nimport { AuthenticationController } from './authentication.controller';\nimport { AuthenticationService } from './authentication.service';\n\n@Module({\n  imports: [\n    ClientsModule.register([\n      {\n        name: 'AUTHENTICATION_SERVICE',\n        transport: Transport.TCP,\n        options: {\n          host: 'localhost',\n          port: 4000,\n        },\n      },\n    ]),\n  ],\n  controllers: [AuthenticationController],\n  providers: [AuthenticationService],\n})\nexport class AuthenticationModule {}\n\n\n// authentication.service.ts\nimport { Injectable } from '@nestjs/common';\nimport { User } from './user.entity';\nimport { UserRepository } from './user.repository';\n\n@Injectable()\nexport class AuthenticationService {\n  constructor(private readonly userRepository: UserRepository) {}\n\n  async validateUser(username: string, password: string): Promise<any> {\n    const user = await this.userRepository.findOne({ username });\n    if (user && user.password === password) {\n      const { password, ...result } = user;\n      return result;\n    }\n    return null;\n  }\n}\n"
+        }
+    ]
+}

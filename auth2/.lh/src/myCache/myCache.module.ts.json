@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/myCache/myCache.module.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1701928169684,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1701928306448,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,22 +1,22 @@\n \n import { CacheModule, CacheModuleOptions } from '@nestjs/cache-manager';\n import { Module, Global } from '@nestjs/common';\n \n-import type { RedisClientOptions } from 'redis';\n-import * as redisStore from 'cache-manager-redis-store';\n-import { MyCacheService } from './myCache.service';\n+// import type { RedisClientOptions } from 'redis';\n+// import * as redisStore from 'cache-manager-redis-store';\n+// import { MyCacheService } from './myCache.service';\n @Global()\n @Module({\n   imports: [\n-    CacheModule.registerAsync({\n-      useFactory: (): CacheModuleOptions<RedisClientOptions> => ({\n-        store: redisStore,\n-        host: '127.0.0.1',\n-        port: 6379,\n-      }),\n-    }),\n+    // CacheModule.registerAsync({\n+    //   useFactory: (): CacheModuleOptions<RedisClientOptions> => ({\n+    //     store: redisStore,\n+    //     host: '127.0.0.1',\n+    //     port: 6379,\n+    //   }),\n+    // }),\n   ],\n-  providers: [MyCacheService],\n-  exports: [MyCacheService],\n+ // providers: [MyCacheService],\n+  //exports: [MyCacheService],\n })\n export class MyCacheModule {}\n"
+                },
+                {
+                    "date": 1701928959407,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,22 +1,22 @@\n \n import { CacheModule, CacheModuleOptions } from '@nestjs/cache-manager';\n import { Module, Global } from '@nestjs/common';\n \n-// import type { RedisClientOptions } from 'redis';\n-// import * as redisStore from 'cache-manager-redis-store';\n-// import { MyCacheService } from './myCache.service';\n+import type { RedisClientOptions } from 'redis';\n+import * as redisStore from 'cache-manager-redis-store';\n+import { MyCacheService } from './myCache.service';\n @Global()\n @Module({\n   imports: [\n-    // CacheModule.registerAsync({\n-    //   useFactory: (): CacheModuleOptions<RedisClientOptions> => ({\n-    //     store: redisStore,\n-    //     host: '127.0.0.1',\n-    //     port: 6379,\n-    //   }),\n-    // }),\n+    CacheModule.registerAsync({\n+      useFactory: (): CacheModuleOptions<RedisClientOptions> => ({\n+        store: redisStore,\n+        host: '127.0.0.1',\n+        port: 6379,\n+      }),\n+    }),\n   ],\n- // providers: [MyCacheService],\n-  //exports: [MyCacheService],\n+  providers: [MyCacheService],\n+  exports: [MyCacheService],\n })\n export class MyCacheModule {}\n"
+                }
+            ],
+            "date": 1701928169684,
+            "name": "Commit-0",
+            "content": "\nimport { CacheModule, CacheModuleOptions } from '@nestjs/cache-manager';\nimport { Module, Global } from '@nestjs/common';\n\nimport type { RedisClientOptions } from 'redis';\nimport * as redisStore from 'cache-manager-redis-store';\nimport { MyCacheService } from './myCache.service';\n@Global()\n@Module({\n  imports: [\n    CacheModule.registerAsync({\n      useFactory: (): CacheModuleOptions<RedisClientOptions> => ({\n        store: redisStore,\n        host: '127.0.0.1',\n        port: 6379,\n      }),\n    }),\n  ],\n  providers: [MyCacheService],\n  exports: [MyCacheService],\n})\nexport class MyCacheModule {}\n"
+        }
+    ]
+}
